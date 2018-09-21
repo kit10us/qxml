@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+   <first/>
+   <second attr1="1234"/>
+   <third attr1="1234" attr2="Longer String">
+      <third_first attr1="1234"/>
+   </third>
+   <![CDATA[Line 1 Line 2 Line 3 - with </node_like_text>]]> 
+</root>
