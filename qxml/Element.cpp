@@ -48,7 +48,7 @@ std::string Element::GetName() const
 
 bool Element::IsTagName( std::string tagName ) const
 {
-	return unify::StringIs( m_tagName, tagName );
+	return unify::string::StringIs( m_tagName, tagName );
 }
 
 unsigned int Element::NumAttributes() const
@@ -58,7 +58,7 @@ unsigned int Element::NumAttributes() const
 
 bool Element::HasAttributes( std::string name ) const
 {
-	std::vector< std::string > names = unify::Split< std::string >( name, ',' );
+	std::vector< std::string > names = unify::string::Split< std::string >( name, ',' );
     for( std::vector< std::string >::const_iterator itrTok = names.begin(); itrTok != names.end(); ++itrTok )
     {
         bool foundMatch = false;
@@ -119,9 +119,9 @@ bool Element::HasAttributes( std::string name ) const
                 }
             }
 
-            if( unify::StringIs( left, currentAttribute.GetName() ) || notLeft )
+            if( unify::string::StringIs( left, currentAttribute.GetName() ) || notLeft )
             {
-                if ( right.empty() || unify::StringIs( right, currentAttribute.GetString() ) || notRight ) 
+                if ( right.empty() || unify::string::StringIs( right, currentAttribute.GetString() ) || notRight ) 
 			    {
                     foundMatch = true;
 				    continue;
@@ -140,7 +140,7 @@ bool Element::HasAttributes( std::string name ) const
 
 bool Element::HasElements( std::string name ) const
 {
-	std::vector< std::string > names = unify::Split< std::string >( name, ',' );
+	std::vector< std::string > names = unify::string::Split< std::string >( name, ',' );
     for( std::vector< std::string >::const_iterator itrTok = names.begin(); itrTok != names.end(); ++itrTok )
     {
 		bool found = false;
@@ -383,7 +383,7 @@ Element * Element::AddCData( std::string text )
 
 std::string Element::AddText( std::string text )
 {
-	m_text += unify::CleanWhitespace( text );
+	m_text += unify::string::CleanWhitespace( text );
 	return m_text;
 }
 

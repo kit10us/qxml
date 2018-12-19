@@ -66,8 +66,8 @@ void Document::Load( unify::Path filePath )
 		if ( bInCData ) {
 			data += cChar;
 			// End CDATA
-			if ( unify::RightString( data, 3 ) == "]]>" ) {
-				data = unify::LeftString( data, (unsigned int)data.length() - 3 );
+			if ( unify::string::RightString( data, 3 ) == "]]>" ) {
+				data = unify::string::LeftString( data, (unsigned int)data.length() - 3 );
 				pParent->m_text += data;
 				data = "";
 				bInCData = false;
@@ -91,7 +91,7 @@ void Document::Load( unify::Path filePath )
 				cQuotes = cChar;
 				continue;
 			} 
-			else if( unify::LeftString( data, 8 ) == "![CDATA[" ) 
+			else if( unify::string::LeftString( data, 8 ) == "![CDATA[" ) 
 			{
 				bInElement = false;
 				bInCData = true;
@@ -100,11 +100,11 @@ void Document::Load( unify::Path filePath )
 			else if( cChar == '>' ) 
 			{
 				bInElement = false;
-				if( unify::LeftString( data, 3 ) == "!--" ) 
+				if( unify::string::LeftString( data, 3 ) == "!--" ) 
 				{
 					bInComment = true;
-					if( unify::RightString( data, 2 ) == "--" ) {  
-						data = unify::RightString( data, (unsigned int)data.length() - 1 );
+					if( unify::string::RightString( data, 2 ) == "--" ) {  
+						data = unify::string::RightString( data, (unsigned int)data.length() - 1 );
 						//printf( "COMMENT = \"%s\"\n", data.c_str() );
 						pElement = AddElement( new Element( "COMMENT", Element::NodeType::Comment, this, line ) );
 						pElement->m_data = data;
@@ -123,9 +123,9 @@ void Document::Load( unify::Path filePath )
 				else 
 				{
 					// Determine if this is a close element...
-					if( unify::LeftString( data, 1 ) == "/" ) 
+					if( unify::string::LeftString( data, 1 ) == "/" ) 
 					{
-						data = unify::RightString( data, (unsigned int)data.length() - 1 );
+						data = unify::string::RightString( data, (unsigned int)data.length() - 1 );
 						if( data != pParent->GetName() )
 						{
 							throw unify::Exception( "Line " + unify::Cast< std::string >( line ) + ": Mismatched end element in file \"" + filePath.ToString() + "\"! (end = " + data + ", open = " + pParent->GetName() + ")!" );
@@ -137,15 +137,15 @@ void Document::Load( unify::Path filePath )
 
 					// Determine if this is a single element (no children)...
 					bool bSingle = false;
-					if( unify::RightString( data, 1 ) == "/" ) 
+					if( unify::string::RightString( data, 1 ) == "/" ) 
 					{
 						bSingle = true;
-						data = unify::LeftString( data, (unsigned int)data.length() - 1 );
+						data = unify::string::LeftString( data, (unsigned int)data.length() - 1 );
 					}
 
 					// Determine if this is a "command" element (single as well)...
 					bool bCommand = false;
-					if( unify::LeftString( data, 1 ) == "?" && unify::RightString( data, 1 ) == "?" ) 
+					if( unify::string::LeftString( data, 1 ) == "?" && unify::string::RightString( data, 1 ) == "?" ) 
 					{
 						bCommand = true;
 						bSingle = true;
@@ -153,13 +153,13 @@ void Document::Load( unify::Path filePath )
 					}
 
 					Element::NodeType::TYPE type = bCommand ? Element::NodeType::ProcessingInstruction : Element::NodeType::Element  ;
-					std::string tagName = unify::ListPart( data, {' ', '\t'}, 0 );
+					std::string tagName = unify::string::ListPart( data, {' ', '\t'}, 0 );
 					pElement = AddElement( new Element( tagName, type, this, line ) );
 
 					// Process out attributes...
-					for( unsigned int i = 1; i < unify::ListPartCount( data, {' ', '\t'} ); i++ )
+					for( unsigned int i = 1; i < unify::string::ListPartCount( data, {' ', '\t'} ); i++ )
 					{
-						std::string attribute = unify::ListPart( data, {' ', '\t'}, i );
+						std::string attribute = unify::string::ListPart( data, {' ', '\t'}, i );
 						if( attribute == "" ) continue;
 						pElement->AddAttribute( Attribute::shared_ptr( new Attribute( attribute ) ) );
 					}
@@ -244,7 +244,7 @@ Element * Document::FindElement( std::string sElement, std::string attribute, st
 			const Attribute::shared_ptr pAttribute = pElement->GetAttribute( attribute );
 			if( pAttribute ) 
 			{
-				if( unify::StringIs( pAttribute->GetString(), sValue ) ) {
+				if( unify::string::StringIs( pAttribute->GetString(), sValue ) ) {
 					return pElement;
 				}
 			}
