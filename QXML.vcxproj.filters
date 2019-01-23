@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="qxml\Attribute.cpp">
+      <Filter>qxml</Filter>
+    </ClCompile>
+    <ClCompile Include="qxml\Document.cpp">
+      <Filter>qxml</Filter>
+    </ClCompile>
+    <ClCompile Include="qxml\Element.cpp">
+      <Filter>qxml</Filter>
+    </ClCompile>
+    <ClCompile Include="qxml\ExportDocument.cpp">
+      <Filter>qxml</Filter>
+    </ClCompile>
+    <ClCompile Include="qxml\XMLParameters.cpp">
+      <Filter>qxml</Filter>
+    </ClCompile>
+    <ClCompile Include="qxml\XPath.cpp">
+      <Filter>qxml</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="qxml\Attribute.h">
+      <Filter>qxml</Filter>
+    </ClInclude>
+    <ClInclude Include="qxml\AttributeCast.h">
+      <Filter>qxml</Filter>
+    </ClInclude>
+    <ClInclude Include="qxml\Document.h">
+      <Filter>qxml</Filter>
+    </ClInclude>
+    <ClInclude Include="qxml\Element.h">
+      <Filter>qxml</Filter>
+    </ClInclude>
+    <ClInclude Include="qxml\ExportDocument.h">
+      <Filter>qxml</Filter>
+    </ClInclude>
+    <ClInclude Include="qxml\QXML.h">
+      <Filter>qxml</Filter>
+    </ClInclude>
+    <ClInclude Include="qxml\XMLParameters.h">
+      <Filter>qxml</Filter>
+    </ClInclude>
+    <ClInclude Include="qxml\XPath.h">
+      <Filter>qxml</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="qxml">
+      <UniqueIdentifier>{6caa323e-2fe7-4ed0-9ae9-a13e2adb7124}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="qxml\Element.inl">
+      <Filter>qxml</Filter>
+    </None>
+  </ItemGroup>
+</Project>
