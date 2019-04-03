@@ -412,3 +412,18 @@ Element * ElementList::AddElement( Element * element )
 	AddItem( element, element->GetName() );
 	return element;
 }
+
+namespace unify
+{
+	template<>
+	unify::Parameters Cast( const qxml::Element & element )
+	{
+		unify::Parameters parameters;
+		for( size_t i = 0; i < element.NumAttributes(); ++i )
+		{
+			auto attribute = element.GetAttribute( i );
+			parameters.Set( attribute->GetName(), attribute->GetString() );
+		}
+		return parameters;
+	}
+}

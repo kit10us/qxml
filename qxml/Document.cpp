@@ -48,10 +48,13 @@ void Document::Load( unify::Path filePath )
 
 	m_filePath = filePath;
 
-	Element * pParent = 0;
+	Element * pParent {};
+	size_t parent_line {};
 
 	// Loop until we find an element, all else is an error (except cr, nl, spaces, tabs)
 	std::string data;
+	size_t data_line {};
+
 	char cQuotes = ' ';
 	bool bInCData = false;
 	size_t line = 0;
@@ -128,7 +131,7 @@ void Document::Load( unify::Path filePath )
 						data = unify::string::RightString( data, (unsigned int)data.length() - 1 );
 						if( data != pParent->GetName() )
 						{
-							throw unify::Exception( "Line " + unify::Cast< std::string >( line ) + ": Mismatched end element in file \"" + filePath.ToString() + "\"! (end = " + data + ", open = " + pParent->GetName() + ")!" );
+							throw unify::Exception( "Line " + unify::Cast< std::string >( line ) + ": Mismatched end element in file \"" + filePath.ToString() + "\"! (end = " + data + "(" + unify::Cast< std::string >( data_line ) + ")" + ", open = " + pParent->GetName() + "(" + unify::Cast< std::string>( parent_line ) + ")" + ")!" );
 						}
 						pParent = pParent->GetParent();
 						data = "";
@@ -167,6 +170,7 @@ void Document::Load( unify::Path filePath )
 					if( pParent == 0 )
 					{
 						pParent = pElement;
+						parent_line = line;
 					}
 					else
 					{
@@ -178,6 +182,7 @@ void Document::Load( unify::Path filePath )
 					{
 						// Not a standalone element, we become parent.
 						pParent = pElement;
+						parent_line = line;
 					}
 				}
 				data = "";
@@ -193,6 +198,7 @@ void Document::Load( unify::Path filePath )
 				pParent->AddText( data );
 			}
 			data = "";
+			data_line = line;
 			bInElement = true;
 			continue;
 		}

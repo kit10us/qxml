@@ -7,6 +7,7 @@
 #include <unify/FStream.h>
 #include <unify/LinkList.h>
 #include <unify/unify.h>
+#include <unify/Parameters.h>
 #include <memory>
 #include <vector>
 #include <list>
@@ -241,6 +242,12 @@ namespace qxml
 		Element * AddElement( Element * element );
 	};
 
+}
+
+namespace unify
+{
+	template<>
+	unify::Parameters Cast( const qxml::Element & element );
 }
 
 #include <qxml/AttributeCast.h>
