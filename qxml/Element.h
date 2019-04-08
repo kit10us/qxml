@@ -16,6 +16,28 @@ namespace qxml
 {
     class Document;
 
+	struct AttributeOption
+	{
+		template< typename T = std::string >
+		AttributeOption( std::string name )
+			: name{ name }
+			, hasDefaultValue{ false }
+		{
+		}
+
+		template< typename T = std::string >
+		AttributeOption( std::string name, T defaultValue )
+			: name{ name }
+			, hasDefaultValue{ true }
+			, defaultValue{ defaultValue }
+		{
+		}
+
+		std::string name;
+		bool hasDefaultValue;
+		unify::Any defaultValue;
+	};
+
 	class Element
 	{
 		friend class Document;
@@ -85,6 +107,14 @@ namespace qxml
 		NodeType::TYPE GetType() const;
         Document * GetDocument() const;
 		size_t GetLine() const;
+
+		/// <summary>
+		/// Convert return parameters of the specific list from attributes.
+		/// </summary>
+		/// <returns>
+		/// Returns the number of parameters from attributes that were found and converted.
+		/// </returns>
+		size_t AttributesToParameters( unify::Parameters & parameters, std::list< AttributeOption > attributes ) const;
 
 		template< typename T >
 		class iterate_children

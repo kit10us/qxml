@@ -402,6 +402,24 @@ size_t Element::GetLine() const
 	return m_line;
 }
 
+size_t Element::AttributesToParameters( unify::Parameters & parameters, std::list< AttributeOption > attributes ) const
+{
+	size_t count {};
+	for( auto attribute : attributes )
+	{
+		if ( HasAttributes( attribute.name ) )
+		{
+			parameters.Set< std::string >( attribute.name, GetAttribute( attribute.name )->GetString() );
+			count++;		
+		}
+		else if ( attribute.hasDefaultValue )
+		{
+			parameters.Set( attribute.name, attribute.defaultValue );
+		}
+	}
+	return count;
+}
+
 
 //////////////////////////////////////////////////////////
 // ElementList
