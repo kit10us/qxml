@@ -439,7 +439,7 @@ namespace unify
 		unify::Parameters parameters;
 		for( size_t i = 0; i < element.NumAttributes(); ++i )
 		{
-			auto attribute = element.GetAttribute( i );
+			auto attribute = element.GetAttribute( (unsigned int)i );
 			parameters.Set( attribute->GetName(), attribute->GetString() );
 		}
 		return parameters;
