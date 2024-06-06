@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QXML", "QXML.vcxproj", "{B6CB05B8-EB1E-4CC3-AE81-420763273E43}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -12,10 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DE4C3BDE
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QXMLTest-ReadWrite", "tests\QXMLTest-ReadWrite\QXMLTest-ReadWrite.vcxproj", "{45F1B34A-006F-48AB-819F-57DB810DEB85}"
 	ProjectSection(ProjectDependencies) = postProject
+		{AD285766-AD5F-4006-91AA-4919F27EF77B} = {AD285766-AD5F-4006-91AA-4919F27EF77B}
 		{B6CB05B8-EB1E-4CC3-AE81-420763273E43} = {B6CB05B8-EB1E-4CC3-AE81-420763273E43}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Unify", "..\unify\Unify.vcxproj", "{AD285766-AD5F-4006-91AA-4919F27EF77B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Unify", "..\Unify\Unify.vcxproj", "{AD285766-AD5F-4006-91AA-4919F27EF77B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +26,10 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B6CB05B8-EB1E-4CC3-AE81-420763273E43}.Debug|x64.ActiveCfg = Debug|Win32
+		{B6CB05B8-EB1E-4CC3-AE81-420763273E43}.Debug|x64.ActiveCfg = Debug|x64
 		{B6CB05B8-EB1E-4CC3-AE81-420763273E43}.Debug|x86.ActiveCfg = Debug|Win32
 		{B6CB05B8-EB1E-4CC3-AE81-420763273E43}.Debug|x86.Build.0 = Debug|Win32
-		{B6CB05B8-EB1E-4CC3-AE81-420763273E43}.Release|x64.ActiveCfg = Release|Win32
+		{B6CB05B8-EB1E-4CC3-AE81-420763273E43}.Release|x64.ActiveCfg = Release|x64
 		{B6CB05B8-EB1E-4CC3-AE81-420763273E43}.Release|x86.ActiveCfg = Release|Win32
 		{B6CB05B8-EB1E-4CC3-AE81-420763273E43}.Release|x86.Build.0 = Release|Win32
 		{45F1B34A-006F-48AB-819F-57DB810DEB85}.Debug|x64.ActiveCfg = Debug|x64
@@ -39,10 +40,10 @@ Global
 		{45F1B34A-006F-48AB-819F-57DB810DEB85}.Release|x64.Build.0 = Release|x64
 		{45F1B34A-006F-48AB-819F-57DB810DEB85}.Release|x86.ActiveCfg = Release|Win32
 		{45F1B34A-006F-48AB-819F-57DB810DEB85}.Release|x86.Build.0 = Release|Win32
-		{AD285766-AD5F-4006-91AA-4919F27EF77B}.Debug|x64.ActiveCfg = Debug|Win32
+		{AD285766-AD5F-4006-91AA-4919F27EF77B}.Debug|x64.ActiveCfg = Debug|x64
 		{AD285766-AD5F-4006-91AA-4919F27EF77B}.Debug|x86.ActiveCfg = Debug|Win32
 		{AD285766-AD5F-4006-91AA-4919F27EF77B}.Debug|x86.Build.0 = Debug|Win32
-		{AD285766-AD5F-4006-91AA-4919F27EF77B}.Release|x64.ActiveCfg = Release|Win32
+		{AD285766-AD5F-4006-91AA-4919F27EF77B}.Release|x64.ActiveCfg = Release|x64
 		{AD285766-AD5F-4006-91AA-4919F27EF77B}.Release|x86.ActiveCfg = Release|Win32
 		{AD285766-AD5F-4006-91AA-4919F27EF77B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
@@ -51,5 +52,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{45F1B34A-006F-48AB-819F-57DB810DEB85} = {DE4C3BDE-7D99-4493-A8F4-EF89D7FC7CD2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E79D19D-2031-4371-8AB7-EF9BF8105407}
 	EndGlobalSection
 EndGlobal

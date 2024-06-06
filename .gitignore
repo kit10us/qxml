@@ -1,9 +1,8 @@
-/.vs/QXML/v14
-/.vs/tests/v14
+/.vs/
 /*.db
-/*.user
 /Debug/*.exe
 /Debug/*.ilk
 /Debug/*.pdb
 /tests/QXMLTest-ReadWrite/.vs/QXMLTest-ReadWrite/v14/*.suo
 /tests/QXMLTest-ReadWrite/Debug
+*.vcxproj.user
