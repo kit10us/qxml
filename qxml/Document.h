@@ -10,6 +10,7 @@
 #include <unify/Path.h>
 #include <unify/FStream.h>
 #include <unify/Exception.h>
+#include <unify/Result.h>
 #include <unify/unify.h>
 #include <vector>
 #include <string>
@@ -22,7 +23,7 @@ namespace qxml
 		Document();
 		Document( unify::Path filePath );
 		virtual ~Document();
-		virtual void Load( unify::Path filePath );
+		virtual unify::Result Load( unify::Path filePath );
 		void Destroy();
 		Element * GetRoot();
 		const Element * GetRoot() const;

@@ -3,6 +3,7 @@
 
 #include <qxml/Document.h>
 #include <unify/String.h>
+#include <unify/Result.h>
 
 using namespace qxml;
 
@@ -25,11 +26,11 @@ Document::~Document()
 	Destroy();
 }
 
-void Document::Load( unify::Path filePath )
+unify::Result Document::Load( unify::Path filePath )
 {
 	if( ! filePath.Exists() )
 	{
-		throw unify::Exception( filePath.ToString() + ": XML File not found!" );
+		return unify::Result(false, filePath.ToString() + ": XML File not found!" );
 	}
 
 	unify::FileStream stream;
@@ -131,7 +132,7 @@ void Document::Load( unify::Path filePath )
 						data = unify::string::RightString( data, (unsigned int)data.length() - 1 );
 						if( data != pParent->GetName() )
 						{
-							throw unify::Exception( "Line " + unify::Cast< std::string >( line ) + ": Mismatched end element in file \"" + filePath.ToString() + "\"! (end = " + data + "(" + unify::Cast< std::string >( data_line ) + ")" + ", open = " + pParent->GetName() + "(" + unify::Cast< std::string>( parent_line ) + ")" + ")!" );
+							return unify::Result(false, "Line " + unify::Cast< std::string >( line ) + ": Mismatched end element in file \"" + filePath.ToString() + "\"! (end = " + data + "(" + unify::Cast< std::string >( data_line ) + ")" + ", open = " + pParent->GetName() + "(" + unify::Cast< std::string>( parent_line ) + ")" + ")!" );
 						}
 						pParent = pParent->GetParent();
 						data = "";
@@ -209,6 +210,7 @@ void Document::Load( unify::Path filePath )
 	}
 
 	stream.Close();
+	return unify::Result(true);
 }
 
 void Document::Destroy()
