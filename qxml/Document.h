@@ -23,7 +23,7 @@ namespace qxml
 		Document();
 		Document( unify::Path filePath );
 		virtual ~Document();
-		virtual unify::Result Load( unify::Path filePath );
+		virtual unify::Result<> Load( unify::Path filePath );
 		void Destroy();
 		Element * GetRoot();
 		const Element * GetRoot() const;
