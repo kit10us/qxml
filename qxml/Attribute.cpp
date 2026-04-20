@@ -12,15 +12,15 @@ Attribute::Attribute()
 
 Attribute::Attribute( std::string attribute )
 {
-	m_name = unify::string::ListPart( attribute, {'='}, 0 );
-	m_value = unify::string::ListPart( attribute, {'='}, 1 );
+	m_name = unify::String::ListPart( attribute, {'='}, 0 );
+	m_value = unify::String::ListPart( attribute, {'='}, 1 );
 	
-	if( unify::string::LeftString( m_value, 1 ) == "\"" )
+	if( unify::String::LeftString( m_value, 1 ) == "\"" )
 	{
 		m_value = m_value.substr( 1, m_value.length() - 1 );
 	}
 
-	if( unify::string::RightString( m_value, 1 ) == "\"" )
+	if( unify::String::RightString( m_value, 1 ) == "\"" )
 	{
 		m_value = m_value.substr( 0, m_value.length() - 1 );
 	}

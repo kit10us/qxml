@@ -3,8 +3,6 @@
 
 #pragma once
 
-#pragma comment(lib,"qxml.lib")
-
 #include <qxml/Attribute.h>
 #include <qxml/Element.h>
 #include <unify/Path.h>
