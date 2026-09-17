@@ -271,13 +271,15 @@ namespace qxml
 	public:
 		Element * AddElement( Element * element );
 	};
-
 }
 
 namespace unify
 {
+	/*
 	template<>
 	unify::Parameters Cast( const qxml::Element & element );
+	*/
+
 }
 
 #include <qxml/AttributeCast.h>

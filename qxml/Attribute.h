@@ -24,7 +24,8 @@ namespace qxml
 		template< typename T >
 		T Get() const
 		{
-			return unify::Cast< T, std::string >( m_value );
+			auto value = unify::FromString< T >( m_value );
+			return !value ? T{} : *value;
 		}
 
 	protected:

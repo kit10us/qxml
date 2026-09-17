@@ -33,7 +33,7 @@ Element::Element( std::string name, NodeType::TYPE type, Document * document, si
 , m_lastChild( 0 )
 , m_numChildren( 0 )
 , m_document( document )
-, m_line( 0 )
+, m_line( line )
 {
 }
 
@@ -58,7 +58,7 @@ unsigned int Element::NumAttributes() const
 
 bool Element::HasAttributes( std::string name ) const
 {
-	std::vector< std::string > names = unify::String::Split< std::string >( name, ',' );
+	std::vector< std::string > names = unify::Split< std::string >( name, ',', false );
     for( std::vector< std::string >::const_iterator itrTok = names.begin(); itrTok != names.end(); ++itrTok )
     {
         bool foundMatch = false;
@@ -140,7 +140,7 @@ bool Element::HasAttributes( std::string name ) const
 
 bool Element::HasElements( std::string name ) const
 {
-	std::vector< std::string > names = unify::String::Split< std::string >( name, ',' );
+	std::vector< std::string > names = unify::Split< std::string >( name, ',', false );
     for( std::vector< std::string >::const_iterator itrTok = names.begin(); itrTok != names.end(); ++itrTok )
     {
 		bool found = false;
@@ -431,17 +431,13 @@ Element * ElementList::AddElement( Element * element )
 	return element;
 }
 
-namespace unify
+unify::Parameters Cast( const qxml::Element & element )
 {
-	template<>
-	unify::Parameters Cast( const qxml::Element & element )
+	unify::Parameters parameters;
+	for( size_t i = 0; i < element.NumAttributes(); ++i )
 	{
-		unify::Parameters parameters;
-		for( size_t i = 0; i < element.NumAttributes(); ++i )
-		{
-			auto attribute = element.GetAttribute( (unsigned int)i );
-			parameters.Set( attribute->GetName(), attribute->GetString() );
-		}
-		return parameters;
+		auto attribute = element.GetAttribute( (unsigned int)i );
+		parameters.Set( attribute->GetName(), attribute->GetString() );
 	}
+	return parameters;
 }

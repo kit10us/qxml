@@ -45,6 +45,9 @@
     <ClInclude Include="qxml\XPath.h">
       <Filter>qxml</Filter>
     </ClInclude>
+    <ClInclude Include="qxml\NodeImpl.h">
+      <Filter>qxml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="qxml">

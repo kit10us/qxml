@@ -1,4 +1,4 @@
-// Copyright (c) 2002 - 2018, Quentin S. Smith
+// Copyright (c) 2002 - 2018, Stacy Smith
 // All Rights Reserved
 
 template< typename T >

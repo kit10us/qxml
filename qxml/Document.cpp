@@ -34,7 +34,7 @@ unify::Result<> Document::Load( unify::Path filePath )
 	}
 
 	unify::FileStream stream;
-	char cChar;	
+	char cChar {};	
 	bool bInElement = false;
 	bool bInComment = false;
 	std::string sElementName;
@@ -58,13 +58,14 @@ unify::Result<> Document::Load( unify::Path filePath )
 
 	char cQuotes = ' ';
 	bool bInCData = false;
-	size_t line = 0;
+	size_t line = 1;
 	while( ! stream.EndOfStream() )
 	{
 		stream.Read( &cChar, 1 );
 		if ( cChar == '\n' )
 		{
 			line++;
+			continue;
 		}
 
 		if ( bInCData ) {
@@ -132,7 +133,10 @@ unify::Result<> Document::Load( unify::Path filePath )
 						data = unify::String::RightString( data, (unsigned int)data.length() - 1 );
 						if( data != pParent->GetName() )
 						{
-							return unify::Failure("Line " + unify::Cast< std::string >( line ) + ": Mismatched end element in file \"" + filePath.ToString() + "\"! (end = " + data + "(" + unify::Cast< std::string >( data_line ) + ")" + ", open = " + pParent->GetName() + "(" + unify::Cast< std::string>( parent_line ) + ")" + ")!" );
+							return unify::Failure("Line " + *unify::ToString(line) + 
+								": Mismatched end element in file \"" + filePath.ToString() + "\"! (end = " + 
+								data + "(" + *unify::ToString( data_line ) + ")" + 
+								", open = " + pParent->GetName() + "(" + *unify::ToString( parent_line ) + ")" + ")!" );
 						}
 						pParent = pParent->GetParent();
 						data = "";
@@ -263,7 +267,7 @@ Element * Document::FindElement( std::string sElement, std::string attribute, st
 	return nullptr;
 }
 
-const unify::Path & Document::GetPath() const
+unify::Path Document::GetPath() const
 {
     return m_filePath;
 }

@@ -19,7 +19,7 @@ namespace qxml
 	{
 	public:
 		Document();
-		Document( unify::Path filePath );
+		Document( unify::Path filePath ); // SAS TODO: Need to turn into a Create function to support nothrow.
 		virtual ~Document();
 		virtual unify::Result<> Load( unify::Path filePath );
 		void Destroy();
@@ -30,12 +30,11 @@ namespace qxml
 		Element * FindElement( std::string element );
 		Element * FindElement( std::string element, std::string attribute, std::string value );
 
-        const unify::Path & GetPath() const;
+        unify::Path GetPath() const;
 
 		Element * AddElement( Element * element );
 
 	protected:
-
 		 unify::Path m_filePath;
 
 		 // Elements stored as a list internally, however they keep linkage hierarchicly.
