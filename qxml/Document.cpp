@@ -133,10 +133,10 @@ unify::Result<> Document::Load( unify::Path filePath )
 						data = unify::String::RightString( data, (unsigned int)data.length() - 1 );
 						if( data != pParent->GetName() )
 						{
-							return unify::Failure("Line " + *unify::ToString(line) + 
+							return unify::Failure("Line " + unify::ToString(line) + 
 								": Mismatched end element in file \"" + filePath.ToString() + "\"! (end = " + 
-								data + "(" + *unify::ToString( data_line ) + ")" + 
-								", open = " + pParent->GetName() + "(" + *unify::ToString( parent_line ) + ")" + ")!" );
+								data + "(" + unify::ToString( data_line ) + ")" + 
+								", open = " + pParent->GetName() + "(" + unify::ToString( parent_line ) + ")" + ")!" );
 						}
 						pParent = pParent->GetParent();
 						data = "";
